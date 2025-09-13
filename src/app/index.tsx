@@ -13,7 +13,7 @@ export default function Index() {
                 <TouchableOpacity>
                     <View style={style.grupoDireito}>
                         <Text style={[style.texto, { marginRight: 10 }]}>Entrar</Text>
-                        /*Aqui vai a imagem de perfil*/
+                        {/*Aqui vai a imagem de perfil*/}
                         
                         <View style={style.imagemPerfilPlaceholder} /> 
 
@@ -22,7 +22,7 @@ export default function Index() {
             </View>
             
             <ScrollView>
-                <Text style={{ padding: 20 }}>Xibiu</Text>
+                <Text style={{ padding: 20 }}>Teste</Text>
             </ScrollView>
 
         </SafeAreaView>   
@@ -38,7 +38,7 @@ const style = StyleSheet.create ({
     topBar : {
         width:"100%",
         height: 60,
-        backgroundColor: "Blue",
+        backgroundColor: "white",
         flexDirection: "row",
         justifyContent: "space-between", 
         alignItems: "center", 
