@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 export const style = StyleSheet.create({
     topBar: {
         width: "100%",
-        height: 60,
-        backgroundColor: "red",
+        height: 70,
+        backgroundColor: "white",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center", 
@@ -13,7 +13,7 @@ export const style = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
-        elevation: 4,
+        elevation: 0,
     },
     grupoDireito: {
         flexDirection: "row",
