@@ -38,7 +38,7 @@ const style = StyleSheet.create ({
     topBar : {
         width:"100%",
         height: 60,
-        backgroundColor: "white",
+        backgroundColor: "Blue",
         flexDirection: "row",
         justifyContent: "space-between", 
         alignItems: "center", 
