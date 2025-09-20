@@ -1,3 +1,4 @@
+
 import Icons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -22,69 +23,62 @@ export default function Index() {
                         
                         <Icons name="qrcode-scan" size={150} color="#1C1C1E" />
                         <Text style={style.textoQrCode}>Ler QR Code</Text>
-                      
+
                     </TouchableOpacity>  
                 </View>
             </ScrollView> 
         </SafeAreaView>   
-  );
+    );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#2FB443',
-  },
-  container: {
-    flex: 1,
-  },
-  topSection: {
-    height: 150,
-    backgroundColor: '#2FB443',
-  },
-  bottomCard: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    marginTop: -30,
-    paddingHorizontal: 30,
-    paddingTop: 40,
-    alignItems: 'center',
-  },
-  titulo: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#1C1C1E',
-    marginBottom: 8,
-  },
-  subtitulo: {
-    fontSize: 16,
-    color: '#505051ff',
-    lineHeight: 24,
-    textAlign: 'center',
-    marginBottom: 40,
-  },
-  btnQrCode: {
-    backgroundColor: 'white',
-    borderRadius: 25,
-    alignItems: 'center',      
-    justifyContent: 'center', 
-    borderWidth: 2,
-    width: '85%',             
-    aspectRatio: 1,           
-    borderColor: '#4CAF50',
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5.62,
-    elevation: 6,
+const style = StyleSheet.create ({
+    container: {
+        flex: 1,
+        backgroundColor: 'white', 
+    },
 
-  },
-  textoQrCode: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginTop: 15,
-    color: '#1C1C1E',
-  }
+    containerTexto: {
+        paddingTop: 60, 
+        paddingHorizontal: 20,
+    },
+
+    titulo: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#1C1C1E', 
+        marginBottom: 8,
+        backgroundColor: '#ffffffff',
+    },
+
+    subtitulo: {
+        fontSize: 16,
+        color: '#6A6A6E', 
+        lineHeight: 24,
+    },
+
+    containerQrCode: {
+        paddingHorizontal: 70,
+        marginVertical: 80, 
+    },
+
+    btnQrCode: {
+        backgroundColor: 'white',
+        borderRadius: 25,
+        padding: 40,
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: '#4CAF50',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 5.62,
+        elevation: 6,
+    },
+
+    textoQrCode: {
+        fontSize: 18,
+        fontWeight: '600',
+        marginTop: 15, 
+        color: '#1C1C1E',
+    }
 });
