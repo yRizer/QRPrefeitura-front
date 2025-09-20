@@ -1,38 +1,68 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
+import ModalWarning from "../components/cameraModals";
 import TopBar from "../components/topBar";
-
+import { isValidQRCode } from "../validators/qrValidator";
 
 export default function CameraScreen() {
     const router = useRouter();
     const [cameraPermission, requestCameraPermission] = useCameraPermissions();
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const qrCodeLock = useRef(false);
 
+    /**
+     * Função executada após leitura do código QR
+     * 
+     * @param {string} data - Dados retornados do leitor
+     */
     function handleQRCodeScanned(data: string) {
         console.log('QR Code scanned:', data);
-        // router.push({ pathname: './', params: { QRCode: data } });
+
+        if (!isValidQRCode(data)) {
+            setIsModalVisible(true);
+            // O lock será liberado quando o modal for fechado, permitindo um novo scan.
+        } else {
+            // Se o QR Code for válido, você pode navegar.
+            // Ex: router.push({ pathname: './details', params: { QRCode: data } });
+            console.log("QR Code válido, navegando...");
+            // Para permitir novos scans ao voltar para esta tela, o lock deve ser liberado.
+            // Uma boa abordagem é usar o hook `useFocusEffect` da `expo-router`.
+            qrCodeLock.current = false;
+        }
     }
 
     return (
         <SafeAreaView style={style.container}>
-            <TopBar titulo={"Leitor de QR Code"} backButton={true}/>
-            {/* Este container ocupará o espaço restante e servirá de referência para o posicionamento absoluto */}
+            <TopBar titulo={"Leitor de QR Code"} backButton={true} />
             <View style={{ flex: 1 }}>
                 <CameraView style={StyleSheet.absoluteFillObject} onBarcodeScanned={({ data }) => {
                     if (data && !qrCodeLock.current) {
-                        qrCodeLock.current = true
-                        setTimeout(() => handleQRCodeScanned(data), 500)
+                        qrCodeLock.current = true; // Bloqueia novos scans imediatamente
+                        handleQRCodeScanned(data);
                     }
                 }} />
 
-                {/* Overlay: uma View por cima da câmera com uma caixa de scan no centro */}
-                <View style={style.overlay}><View style={style.scanBox} /></View>
+                <View style={style.overlay}>
+                    <View style={style.scanBox} />
+                </View>
             </View>
+            <ModalWarning
+                visible={isModalVisible}
+                onClose={() => {
+                    // Fecha o Modal
+                    setIsModalVisible(false)
+
+                    // Espera 500 milesimos para desbloquear o leitor de QR Code
+                    setTimeout(function () {
+                        qrCodeLock.current = false
+                    }, 1000)
+                }}
+            />
         </SafeAreaView>
     )
 }
